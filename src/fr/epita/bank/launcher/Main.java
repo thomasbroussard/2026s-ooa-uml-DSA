@@ -21,10 +21,7 @@ public class Main {
         savingsAccount.setBalance(savingsAccount.getBalance() + gain);
 
         System.out.println(savingsAccount.getBalance());
-
-
         Stock stock = new Stock();
-
         stock.setPrice(3000.0);
         stock.setName("Apple");
 
@@ -34,7 +31,12 @@ public class Main {
         investmentAccount.setCustomer(customer);
 
         StockOrder stockOrder = new StockOrder();
-        //to be continued
+        stockOrder.setQuantity(3);
+        stockOrder.setCurrentPrice(stock.getPrice());
+        stockOrder.setStock(stock);
+        stockOrder.setAccount(investmentAccount);
+        stockOrder.setCommission(stockOrder.getCurrentPrice() * 0.01);
+
 
 
 
