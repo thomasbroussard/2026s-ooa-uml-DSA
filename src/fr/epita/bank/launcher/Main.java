@@ -1,6 +1,7 @@
 package fr.epita.bank.launcher;
 
 import fr.epita.bank.datamodel.*;
+import fr.epita.bank.fr.epita.bank.services.AccountService;
 
 public class Main {
 
@@ -30,15 +31,17 @@ public class Main {
         investmentAccount.setAccountNumber("123456789");
         investmentAccount.setCustomer(customer);
 
-        StockOrder stockOrder = new StockOrder();
-        stockOrder.setQuantity(3);
-        stockOrder.setCurrentPrice(stock.getPrice());
-        stockOrder.setStock(stock);
-        stockOrder.setAccount(investmentAccount);
-        stockOrder.setCommission(stockOrder.getCurrentPrice() * 0.01);
+        StockOrder order1 = AccountService.buyStock(3, stock, investmentAccount);
 
 
+        Stock stock2 = new Stock();
+        stock2.setPrice(200.0);
+        stock2.setName("Microsoft");
+
+        StockOrder order2 = AccountService.buyStock(2, stock2, investmentAccount);
 
 
     }
+
+
 }
