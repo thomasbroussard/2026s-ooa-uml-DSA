@@ -1,6 +1,7 @@
 package fr.epita.bank.fr.epita.bank.services;
 
 import fr.epita.bank.datamodel.InvestmentAccount;
+import fr.epita.bank.datamodel.SavingsAccount;
 import fr.epita.bank.datamodel.Stock;
 import fr.epita.bank.datamodel.StockOrder;
 
@@ -14,5 +15,13 @@ public class AccountService {
         stockOrder2.setAccount(investmentAccount);
         stockOrder2.setCommission(stockOrder2.getCurrentPrice() * 0.01);
         return stockOrder2;
+    }
+
+
+
+    public static double computeInterestGain(SavingsAccount savingsAccount) {
+        double gain = savingsAccount.getInterestRate() * savingsAccount.getBalance();
+        savingsAccount.setBalance(savingsAccount.getBalance() + gain);
+        return gain;
     }
 }

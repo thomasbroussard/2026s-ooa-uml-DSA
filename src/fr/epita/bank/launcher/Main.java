@@ -18,8 +18,7 @@ public class Main {
 
         savingsAccount.setCustomer(customer);
 
-        double gain = savingsAccount.getInterestRate() * savingsAccount.getBalance();
-        savingsAccount.setBalance(savingsAccount.getBalance() + gain);
+        AccountService.computeInterestGain(savingsAccount);
 
         System.out.println(savingsAccount.getBalance());
         Stock stock = new Stock();
@@ -33,7 +32,6 @@ public class Main {
 
         StockOrder order1 = AccountService.buyStock(3, stock, investmentAccount);
 
-
         Stock stock2 = new Stock();
         stock2.setPrice(200.0);
         stock2.setName("Microsoft");
@@ -42,6 +40,7 @@ public class Main {
 
 
     }
+
 
 
 }
