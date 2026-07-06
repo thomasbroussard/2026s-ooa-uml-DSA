@@ -12,11 +12,16 @@ public class Main {
         customer.setAddress("123 avenue des champs élysées,  Paris, France");
 
         SavingsAccount savingsAccount = new SavingsAccount();
-        savingsAccount.setInterestRate(3.0);
+        savingsAccount.setInterestRate(0.03);
         savingsAccount.setBalance(30000);
         savingsAccount.setAccountNumber("123456789");
 
         savingsAccount.setCustomer(customer);
+
+        double gain = savingsAccount.getInterestRate() * savingsAccount.getBalance();
+        savingsAccount.setBalance(savingsAccount.getBalance() + gain);
+
+        System.out.println(savingsAccount.getBalance());
 
 
 
