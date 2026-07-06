@@ -1,7 +1,6 @@
 package fr.epita.bank.launcher;
 
-import fr.epita.bank.datamodel.Customer;
-import fr.epita.bank.datamodel.SavingsAccount;
+import fr.epita.bank.datamodel.*;
 
 public class Main {
 
@@ -24,7 +23,18 @@ public class Main {
         System.out.println(savingsAccount.getBalance());
 
 
+        Stock stock = new Stock();
 
+        stock.setPrice(3000.0);
+        stock.setName("Apple");
+
+        InvestmentAccount investmentAccount = new InvestmentAccount();
+        investmentAccount.setBalance(100000);
+        investmentAccount.setAccountNumber("123456789");
+        investmentAccount.setCustomer(customer);
+
+        StockOrder stockOrder = new StockOrder();
+        //to be continued
 
 
 
