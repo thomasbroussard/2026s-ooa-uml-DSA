@@ -4,6 +4,8 @@ import fr.epita.bank.datamodel.Customer;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TestFileIO {
@@ -27,6 +29,10 @@ public class TestFileIO {
         String line = scanner.nextLine();
         System.out.println(line);
         String secondLine = scanner.nextLine();
+        List<Customer> customers = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            customers.add(new Customer());
+        }
         String[] parts = secondLine.split(";");
         Customer customer = new Customer();
         customer.setName(parts[0]);
