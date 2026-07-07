@@ -30,18 +30,9 @@ public class AccountService {
     public static List<Stock> getStockList(String path) {
         List<Stock> stocks = new ArrayList<>();
         File file = new File(path);
-        if (file.exists()) {
-            System.out.println("File exists");
-        }else {
-            System.out.println("File does not exist");
+        Scanner scanner = getScanner(file);
+        if (scanner == null) {
             return stocks;
-        }
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        }catch (Exception e) {
-            System.out.println("Error while reading file");
-            e.printStackTrace();
         }
         scanner.nextLine();
         while (scanner.hasNextLine()) {
@@ -57,6 +48,22 @@ public class AccountService {
         }
 
         return stocks;
+    }
+
+    private static Scanner getScanner(File file) {
+        if (file.exists()) {
+            System.out.println("File exists");
+        }else {
+            System.out.println("File does not exist");
+        }
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        }catch (Exception e) {
+            System.out.println("Error while reading file");
+            e.printStackTrace();
+        }
+        return scanner;
     }
 
     public static List<Customer> getCustomersList(String path) {
