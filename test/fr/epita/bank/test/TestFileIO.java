@@ -28,16 +28,22 @@ public class TestFileIO {
         }
         String line = scanner.nextLine();
         System.out.println(line);
-        String secondLine = scanner.nextLine();
+
         List<Customer> customers = new ArrayList<>();
         while (scanner.hasNextLine()) {
-            customers.add(new Customer());
+            String secondLine = scanner.nextLine();
+            if (secondLine.isEmpty()) {
+                continue;
+            }
+            String[] parts = secondLine.split(";");
+            Customer customer = new Customer();
+            customer.setName(parts[0]);
+            customer.setAddress(parts[1]);
+            customers.add(customer);
         }
-        String[] parts = secondLine.split(";");
-        Customer customer = new Customer();
-        customer.setName(parts[0]);
-        customer.setAddress(parts[1]);
-        System.out.println(customer.getName());
+
+        System.out.println(customers);
+
 
 
 
