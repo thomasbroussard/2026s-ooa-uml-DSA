@@ -1,9 +1,8 @@
 package fr.epita.bank.fr.epita.bank.services;
 
-import fr.epita.bank.datamodel.InvestmentAccount;
-import fr.epita.bank.datamodel.SavingsAccount;
-import fr.epita.bank.datamodel.Stock;
-import fr.epita.bank.datamodel.StockOrder;
+import fr.epita.bank.datamodel.*;
+
+import java.util.List;
 
 public class AccountService {
 
@@ -23,5 +22,15 @@ public class AccountService {
         double gain = savingsAccount.getInterestRate() * savingsAccount.getBalance();
         savingsAccount.setBalance(savingsAccount.getBalance() + gain);
         return gain;
+    }
+
+    public static List<Stock> getStockList(String path) {
+
+        return null;
+    }
+
+    public static List<Customer> getCustomersList(String path) {
+
+        return null;
     }
 }
