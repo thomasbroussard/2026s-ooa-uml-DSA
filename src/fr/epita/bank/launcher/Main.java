@@ -3,18 +3,30 @@ package fr.epita.bank.launcher;
 import fr.epita.bank.datamodel.*;
 import fr.epita.bank.fr.epita.bank.services.AccountService;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
         Customer customer = new Customer();
 
-        customer.setName("John");
-        customer.setAddress("123 avenue des champs élysées,  Paris, France");
+        System.out.println("Enter customer name");
+        customer.setName(scanner.nextLine());
+        System.out.println("Enter customer address");
+        customer.setAddress(scanner.nextLine());
 
+        System.out.println("savings account creation");
         SavingsAccount savingsAccount = new SavingsAccount();
-        savingsAccount.setInterestRate(0.03);
-        savingsAccount.setBalance(30000);
-        savingsAccount.setAccountNumber("123456789");
+        System.out.println("Enter savings account interest rate");
+        String rawInterestRate = scanner.nextLine();
+        savingsAccount.setInterestRate(Double.parseDouble(rawInterestRate));
+        System.out.println("Enter savings account balance");
+        String rawBalance = scanner.nextLine();
+        savingsAccount.setBalance(Double.parseDouble(rawBalance));
+        System.out.println("Enter savings account number");
+        savingsAccount.setAccountNumber(scanner.nextLine());
 
         savingsAccount.setCustomer(customer);
 
