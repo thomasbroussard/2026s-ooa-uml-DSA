@@ -1,4 +1,4 @@
-package fr.epita.bank.fr.epita.bank.services;
+package fr.epita.bank.services;
 
 import fr.epita.bank.datamodel.*;
 
