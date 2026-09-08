@@ -18,10 +18,23 @@ public class CSVService {
             return biostatEntries;
         }
         Scanner scanner = new Scanner(file);
-
+        scanner.nextLine();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            System.out.println(line);
+            String[] parts = line.split(",");
+            String name = parts[0].replace("\"", "").trim();
+            String gender = parts[1].replace("\"", "").trim();
+            Integer age = Integer.parseInt(parts[2].trim());
+            Integer height = Integer.parseInt(parts[3].trim());
+            Integer weight = Integer.parseInt(parts[4].trim());
+
+            BiostatEntry entry = new BiostatEntry();
+            entry.setAge(age);
+            entry.setGender(gender);
+            entry.setHeight(height);
+            entry.setName(name);
+            entry.setWeight(weight);
+            biostatEntries.add(entry);
         }
 
         return biostatEntries;

@@ -47,5 +47,14 @@ public class BiostatEntry {
         this.weight = weight;
     }
 
-
+    @Override
+    public String toString() {
+        return "BiostatEntry{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                ", weight=" + weight +
+                '}';
+    }
 }
