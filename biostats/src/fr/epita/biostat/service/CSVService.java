@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 public class CSVService {
 
+    public static final String DELIMITER = ",";
+
     public static List<BiostatEntry> readCSV(String path) throws FileNotFoundException {
         File file = new File(path);
         List<BiostatEntry> biostatEntries = new ArrayList<>();
@@ -19,10 +21,10 @@ public class CSVService {
             return biostatEntries;
         }
         Scanner scanner = new Scanner(file);
-        scanner.nextLine();
+        scanner.nextLine(); //skip the first line, because it is the headers
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] parts = line.split(",");
+            String[] parts = line.split(DELIMITER);
             String name = parts[0].replace("\"", "").trim();
             String gender = parts[1].replace("\"", "").trim();
             Integer age = Integer.parseInt(parts[2].trim());
@@ -45,11 +47,21 @@ public class CSVService {
 
         PrintWriter printWriter = new PrintWriter(new File(path));
 
-        printWriter.println();
+        printWriter.println("Name" + DELIMITER +
+                "Gender" + DELIMITER +
+                "Age"  + DELIMITER +
+                "Height"  + DELIMITER +
+                "Weight");
 
         for (BiostatEntry entry : biostatEntries) {
+            printWriter.println(entry.getName()+ DELIMITER +
+                    entry.getGender() + DELIMITER +
+                    entry.getAge() + DELIMITER +
+                    entry.getHeight() + DELIMITER +
+                    entry.getWeight());
 
         }
+        printWriter.flush();
         printWriter.close();
 
     }
