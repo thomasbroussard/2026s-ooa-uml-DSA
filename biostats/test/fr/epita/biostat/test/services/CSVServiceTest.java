@@ -13,7 +13,13 @@ public class CSVServiceTest {
                 CSVService.readCSV("./java-examples/biostats/biostats.csv");
         System.out.println(entries);
         CSVService.writeCSV(entries, "./java-examples/biostats/biostats-output.csv");
+        List<BiostatEntry> otherEntries = CSVService.readCSV("./java-examples/biostats/biostats-output.csv");
 
-
+        if (otherEntries.size() == entries.size()){
+            System.out.println("The two lists have same size :" + otherEntries.size());
+        }
+        if (otherEntries.get(1).equals(entries.get(1))){
+            System.out.println("The two lists have same entries :" + otherEntries.get(1));
+        }
     }
 }

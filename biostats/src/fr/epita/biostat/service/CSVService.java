@@ -61,9 +61,9 @@ public class CSVService {
         for (BiostatEntry entry : biostatEntries) {
             String line = join(DELIMITER, format(entry.getName()),
                     format(entry.getGender()),
-                    format(entry.getAge()),
-                    format(entry.getHeight()),
-                    format(entry.getWeight()));
+                    entry.getAge(),
+                    entry.getHeight(),
+                    entry.getWeight());
             printWriter.println(line);
         }
         printWriter.flush();
