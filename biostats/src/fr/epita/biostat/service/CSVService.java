@@ -43,19 +43,20 @@ public class CSVService {
         return biostatEntries;
     }
 
-    public void writeCSV(List<BiostatEntry> biostatEntries, String path) throws FileNotFoundException {
+    public static void writeCSV(List<BiostatEntry> biostatEntries, String path) throws FileNotFoundException {
 
         PrintWriter printWriter = new PrintWriter(new File(path));
 
-        printWriter.println("Name" + DELIMITER +
-                "Gender" + DELIMITER +
-                "Age"  + DELIMITER +
-                "Height"  + DELIMITER +
-                "Weight");
+        printWriter.println("\"Name\"" + DELIMITER +
+                "\"Sex\"" + DELIMITER +
+                "\"Age\""  + DELIMITER +
+                "\"Height\""  + DELIMITER +
+                "\"Weight\"");
 
         for (BiostatEntry entry : biostatEntries) {
-            printWriter.println(entry.getName()+ DELIMITER +
-                    entry.getGender() + DELIMITER +
+            printWriter.println(
+                    "\""+entry.getName()+ "\""+ DELIMITER +
+                    "\""+ entry.getGender()+ "\""  + DELIMITER +
                     entry.getAge() + DELIMITER +
                     entry.getHeight() + DELIMITER +
                     entry.getWeight());
