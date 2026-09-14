@@ -12,7 +12,7 @@ public class StringService {
         }
         String result = "";
         for (int i = 0; i < elements.length - 1; i++) {
-            result =  elements[i] + delimiter;
+            result +=  elements[i] + delimiter;
         }
         return result + elements[elements.length - 1];
 
