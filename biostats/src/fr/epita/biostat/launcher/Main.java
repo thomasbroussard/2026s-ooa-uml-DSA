@@ -1,6 +1,6 @@
 package fr.epita.biostat.launcher;
 
-import fr.epita.biostat.CSVService;
+import fr.epita.biostat.service.CSVService;
 import fr.epita.biostat.datamodel.BiostatEntry;
 
 import java.io.FileNotFoundException;

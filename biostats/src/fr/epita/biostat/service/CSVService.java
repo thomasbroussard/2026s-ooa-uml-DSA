@@ -1,9 +1,10 @@
-package fr.epita.biostat;
+package fr.epita.biostat.service;
 
 import fr.epita.biostat.datamodel.BiostatEntry;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -38,7 +39,19 @@ public class CSVService {
         }
 
         return biostatEntries;
+    }
 
+    public void writeCSV(List<BiostatEntry> biostatEntries, String path) throws FileNotFoundException {
+
+        PrintWriter printWriter = new PrintWriter(new File(path));
+
+        printWriter.println();
+
+        for (BiostatEntry entry : biostatEntries) {
+
+        }
+        printWriter.close();
 
     }
+
 }
