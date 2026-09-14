@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.epita.biostat.service.StringService;
+
+import static fr.epita.biostat.service.StringService.format;
+import static fr.epita.biostat.service.StringService.join;
+
 public class CSVService {
 
     public static final String DELIMITER = ",";
@@ -55,20 +60,18 @@ public class CSVService {
 
         for (BiostatEntry entry : biostatEntries) {
             printWriter.println(
-                    format(entry.getName()) + DELIMITER +
-                            "\"" + entry.getGender() + "\"" + DELIMITER +
-                            entry.getAge() + DELIMITER +
-                            entry.getHeight() + DELIMITER +
-                            entry.getWeight());
-
+                   join(DELIMITER, format(entry.getName()),
+                            format(entry.getGender()),
+                            format(entry.getAge()),
+                            format(entry.getHeight()),
+                            format(entry.getWeight())
+                    )
+            );
         }
         printWriter.flush();
         printWriter.close();
 
     }
 
-    private static String format(String val) {
-        return "\"" + val + "\"";
-    }
 
 }
