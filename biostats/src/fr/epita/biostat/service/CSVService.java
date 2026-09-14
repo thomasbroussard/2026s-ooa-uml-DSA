@@ -55,16 +55,20 @@ public class CSVService {
 
         for (BiostatEntry entry : biostatEntries) {
             printWriter.println(
-                    "\""+entry.getName()+ "\""+ DELIMITER +
-                    "\""+ entry.getGender()+ "\""  + DELIMITER +
-                    entry.getAge() + DELIMITER +
-                    entry.getHeight() + DELIMITER +
-                    entry.getWeight());
+                    format(entry.getName()) + DELIMITER +
+                            "\"" + entry.getGender() + "\"" + DELIMITER +
+                            entry.getAge() + DELIMITER +
+                            entry.getHeight() + DELIMITER +
+                            entry.getWeight());
 
         }
         printWriter.flush();
         printWriter.close();
 
+    }
+
+    private static String format(String val) {
+        return "\"" + val + "\"";
     }
 
 }
