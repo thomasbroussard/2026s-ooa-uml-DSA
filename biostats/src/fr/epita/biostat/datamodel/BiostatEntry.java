@@ -9,6 +9,17 @@ public class BiostatEntry {
     private Integer height;
     private Integer weight;
 
+    public BiostatEntry() {
+    }
+
+    public BiostatEntry(String name, String gender, Integer age, Integer height, Integer weight) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+    }
+
     public String getName() {
         return name;
     }
