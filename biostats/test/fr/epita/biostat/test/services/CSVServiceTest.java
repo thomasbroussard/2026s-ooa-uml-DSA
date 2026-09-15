@@ -18,8 +18,12 @@ public class CSVServiceTest {
         if (otherEntries.size() == entries.size()){
             System.out.println("The two lists have same size :" + otherEntries.size());
         }
-        if (otherEntries.get(1).equals(entries.get(1))){
-            System.out.println("The two lists have same entries :" + otherEntries.get(1));
+        for (int i = 0; i < entries.size(); i++){
+            if (otherEntries.get(i).equals(entries.get(i))){
+                System.out.println("The two lists have same entries :" + otherEntries.get(i));
+            }else{
+                System.out.println("The two lists have different entries for index :" + i + " " + otherEntries.get(i));
+            }
         }
     }
 }
