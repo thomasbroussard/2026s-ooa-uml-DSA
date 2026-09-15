@@ -38,8 +38,12 @@ public class BiostatJdbcDAO {
         return connection;
     }
 
-    public void delete(BiostatEntry entry) {
-
+    public void delete(BiostatEntry entry) throws SQLException{
+       Connection connection =  getConnection();
+       String deleteQuery = "DELETE FROM BIOSTAT WHERE NAME = ?";
+       PreparedStatement pstmt = connection.prepareStatement(deleteQuery);
+       pstmt.execute();
+       connection.close();
     }
 
     public void update(BiostatEntry entry) {
