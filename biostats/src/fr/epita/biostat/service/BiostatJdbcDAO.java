@@ -3,6 +3,7 @@ package fr.epita.biostat.service;
 import fr.epita.biostat.datamodel.BiostatEntry;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BiostatJdbcDAO {
@@ -56,7 +57,7 @@ public class BiostatJdbcDAO {
 
     public List<BiostatEntry> findAll() throws SQLException {
         Connection connection = getConnection();
-        List<BiostatEntry> entries = null;
+        List<BiostatEntry> entries = new ArrayList<>();
         String selectQuery = "SELECT * FROM BIOSTAT";
 
         PreparedStatement pstmt = connection.prepareStatement(selectQuery);
@@ -74,6 +75,39 @@ public class BiostatJdbcDAO {
         }
         return entries;
 
+    }
+
+    public List<BiostatEntry> find(BiostatEntry qbe) throws SQLException {
+        Connection connection = getConnection();
+        List<BiostatEntry> entries = null;
+        String selectQuery = """
+                SELECT * FROM BIOSTAT 
+                WHERE 
+                    (? IS NULL OR NAME = ?)
+                  AND 
+                    GENDER = ?
+        """;
+
+        PreparedStatement pstmt = connection.prepareStatement(selectQuery);
+        pstmt.setString(1, qbe.getName());
+        pstmt.setString(2, qbe.getName());
+        pstmt.setString(3, qbe.getGender());
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            BiostatEntry entry = new BiostatEntry();
+            entry.setName(rs.getString("NAME"));
+            entry.setAge(rs.getInt("AGE"));
+            entry.setGender(rs.getString("GENDER"));
+            entry.setHeight(rs.getInt("HEIGHT"));
+            entry.setWeight(rs.getInt("WEIGHT"));
+            entries.add(entry);
+        }
+        return entries;
 
     }
+
+
+
+
 }
