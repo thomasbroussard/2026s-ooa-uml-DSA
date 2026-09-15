@@ -2,10 +2,7 @@ package fr.epita.biostat.service;
 
 import fr.epita.biostat.datamodel.BiostatEntry;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class BiostatJdbcDAO {
@@ -38,17 +35,17 @@ public class BiostatJdbcDAO {
         return connection;
     }
 
-    public void delete(BiostatEntry entry) throws SQLException{
-       Connection connection =  getConnection();
-       String deleteQuery = "DELETE FROM BIOSTAT WHERE NAME = ?";
-       PreparedStatement pstmt = connection.prepareStatement(deleteQuery);
-       pstmt.setString(1, entry.getName());
-       pstmt.execute();
-       connection.close();
+    public void delete(BiostatEntry entry) throws SQLException {
+        Connection connection = getConnection();
+        String deleteQuery = "DELETE FROM BIOSTAT WHERE NAME = ?";
+        PreparedStatement pstmt = connection.prepareStatement(deleteQuery);
+        pstmt.setString(1, entry.getName());
+        pstmt.execute();
+        connection.close();
     }
 
-    public void update(BiostatEntry entry) throws SQLException{
-        Connection connection =  getConnection();
+    public void update(BiostatEntry entry) throws SQLException {
+        Connection connection = getConnection();
         String updateQuery = "UPDATE BIOSTAT SET AGE = ? WHERE NAME = ?";
         PreparedStatement pstmt = connection.prepareStatement(updateQuery);
         pstmt.setInt(1, entry.getAge());
@@ -57,7 +54,26 @@ public class BiostatJdbcDAO {
         connection.close();
     }
 
-    public List<BiostatEntry> findAll() {
-        return null;
+    public List<BiostatEntry> findAll() throws SQLException {
+        Connection connection = getConnection();
+        List<BiostatEntry> entries = null;
+        String selectQuery = "SELECT * FROM BIOSTAT";
+
+        PreparedStatement pstmt = connection.prepareStatement(selectQuery);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            BiostatEntry entry = new BiostatEntry();
+            entry.setName(rs.getString("NAME"));
+            entry.setAge(rs.getInt("AGE"));
+            entry.setGender(rs.getString("GENDER"));
+            entry.setHeight(rs.getInt("HEIGHT"));
+            entry.setWeight(rs.getInt("WEIGHT"));
+            entries.add(entry);
+        }
+        return entries;
+
+
     }
 }
