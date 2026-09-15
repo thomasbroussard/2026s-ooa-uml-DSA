@@ -1,9 +1,6 @@
 package fr.epita.biostat.test.services;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JDBCTest {
 
@@ -14,13 +11,24 @@ public class JDBCTest {
 
         String insertQuery = "INSERT INTO BIOSTAT VALUES ('Thomas', 'M', 25, 175, 65);";
         String selectQuery = "SELECT * FROM BIOSTAT;";
-        String updateQuery = "UPDATE BIOSTAT SET NAME = ? WHERE ID = ?;";
-        String deleteQuery = "DELETE FROM BIOSTAT;";
+        String updateQuery = "UPDATE BIOSTAT SET AGE = 40  WHERE NAME = 'Thomas';";
+        String deleteQuery = "DELETE FROM BIOSTAT WHERE NAME = 'Thomas';";
 
         connection.prepareStatement(insertQuery).execute();
+        connection.prepareStatement(updateQuery).execute();
 
 
+        ResultSet resultSet = connection.prepareStatement(selectQuery).executeQuery();
 
+        while (resultSet.next()) {
+            System.out.println(
+                    resultSet.getString("NAME") + " "
+                    + resultSet.getString("GENDER") + " "
+                    + resultSet.getInt("AGE") + " "
+                    + resultSet.getInt("HEIGHT") + " "
+                    + resultSet.getInt("WEIGHT"));
+        }
 
+        connection.prepareStatement(deleteQuery).execute();
     }
 }
