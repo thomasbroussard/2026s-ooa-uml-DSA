@@ -42,12 +42,19 @@ public class BiostatJdbcDAO {
        Connection connection =  getConnection();
        String deleteQuery = "DELETE FROM BIOSTAT WHERE NAME = ?";
        PreparedStatement pstmt = connection.prepareStatement(deleteQuery);
+       pstmt.setString(1, entry.getName());
        pstmt.execute();
        connection.close();
     }
 
-    public void update(BiostatEntry entry) {
-
+    public void update(BiostatEntry entry) throws SQLException{
+        Connection connection =  getConnection();
+        String updateQuery = "UPDATE BIOSTAT SET AGE = ? WHERE NAME = ?";
+        PreparedStatement pstmt = connection.prepareStatement(updateQuery);
+        pstmt.setInt(1, entry.getAge());
+        pstmt.setString(2, entry.getName());
+        pstmt.execute();
+        connection.close();
     }
 
     public List<BiostatEntry> findAll() {
